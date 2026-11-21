@@ -4,6 +4,10 @@
 <desc>Example scene used to show the interface; not a result for any official case.</desc>
 <rect id="canvas-bg" x="0" y="0" width="1400" height="820" fill="#ffffff"/>
 <g id="layer-frame">
+<rect id="panel-A" x="40" y="250" width="300" height="220" fill="none" stroke="#9aa5b1" stroke-width="1.2" stroke-dasharray="6,4"/>
+<text id="panel-label-A" x="48" y="276" font-size="24" font-weight="bold" fill="#1b1b1b">A</text>
+<rect id="panel-B" x="360" y="250" width="620" height="220" fill="none" stroke="#9aa5b1" stroke-width="1.2" stroke-dasharray="6,4"/>
+<text id="panel-label-B" x="368" y="276" font-size="24" font-weight="bold" fill="#1b1b1b">B</text>
 </g>
 <g id="layer-connectors">
 <g id="edge-e-1">
