@@ -1,0 +1,40 @@
+{
+ "data": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\case\\artifacts\\data.csv",
+ "rows": 10,
+ "x": "time_s",
+ "x_numeric": true,
+ "style": "line",
+ "series": [
+  {
+   "label": "recorded signal",
+   "column": "signal_mV",
+   "points": 10,
+   "missing": 0
+  },
+  {
+   "label": "control arm",
+   "column": "control_mV",
+   "points": 10,
+   "missing": 0
+  }
+ ],
+ "written": {
+  "svg": {
+   "path": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.svg",
+   "bytes": 32059
+  },
+  "pdf": {
+   "path": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.pdf",
+   "bytes": 13550
+  },
+  "png": {
+   "path": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.png",
+   "bytes": 112199
+  }
+ },
+ "columns": [
+  "time_s",
+  "signal_mV",
+  "control_mV"
+ ]
+}
