@@ -4,24 +4,32 @@
    "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.svg",
    "ok": true,
    "problems": [],
+   "warnings": [
+    "16 distinct colours; a journal figure usually stays under 12"
+   ],
    "facts": {
     "viewBox": "0 0 1400 820",
     "width": "1400",
     "height": "820",
-    "text_elements": 10,
+    "text_elements": 12,
     "groups": 12,
     "layer_ids": [
      "layer-frame",
      "layer-connectors",
      "layer-shapes",
      "layer-labels"
-    ]
+    ],
+    "font_families": [
+     "sans-serif"
+    ],
+    "colors": 16
    }
   },
   {
    "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.png",
    "ok": true,
    "problems": [],
+   "warnings": [],
    "facts": {
     "size": [
      2800,
@@ -32,7 +40,7 @@
      299.9994,
      299.9994
     ],
-    "stddev": 18.55,
+    "stddev": 19.25,
     "unique_levels": 239
    }
   },
@@ -40,17 +48,26 @@
    "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.pdf",
    "ok": true,
    "problems": [],
+   "warnings": [],
    "facts": {
     "pages": 1,
     "page_size": [
      1400.0,
      820.0
     ],
-    "text_chars": 169
+    "text_chars": 173,
+    "fonts": [
+     "AAAAAA+MicrosoftYaHei-0",
+     "Helvetica"
+    ],
+    "fonts_embedded": false
    }
   }
  ],
  "ok": true,
  "problems": [],
- "text_elements": 10
+ "warnings": [
+  "figure.svg: 16 distinct colours; a journal figure usually stays under 12"
+ ],
+ "text_elements": 12
 }
