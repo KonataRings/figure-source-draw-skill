@@ -1,0 +1,16 @@
+{
+ "x": "time_s",
+ "series": [
+  {"y": "signal_mV", "label": "recorded signal", "color": "#1f4e79", "linewidth": 2.2},
+  {"y": "control_mV", "label": "control arm", "color": "#999999", "linewidth": 1.6, "marker": "s"}
+ ],
+ "style": "line",
+ "title": "Synthetic trace used by the example case",
+ "xlabel": "time (s)",
+ "ylabel": "amplitude (mV)",
+ "figsize": [6.2, 4.0],
+ "dpi": 300,
+ "grid": true,
+ "legend": true,
+ "note": "columns come from data.csv; values are synthetic"
+}
