@@ -7,9 +7,6 @@
   "chart.pdf": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.pdf",
   "chart.png": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.png",
   "chart.svg": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\chart.svg",
-  "demo.pdf": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\demo.pdf",
-  "demo.png": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\demo.png",
-  "demo.svg": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\demo.svg",
   "figure.pdf": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.pdf",
   "figure.png": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.png",
   "figure.svg": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.svg"
@@ -26,7 +23,8 @@
    "page": "",
    "evidence": "a brief stimulus is applied",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "n-relay",
@@ -38,7 +36,8 @@
    "page": "",
    "evidence": "the relay nucleus receives it",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "n-rec",
@@ -50,7 +49,8 @@
    "page": "",
    "evidence": "responses were recorded downstream",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "n-ctrl",
@@ -62,7 +62,8 @@
    "page": "",
    "evidence": "the text mentions a control but not its position in the pathway",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "e-1",
@@ -74,7 +75,8 @@
    "page": "",
    "evidence": "excites the relay",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "e-2",
@@ -86,7 +88,8 @@
    "page": "",
    "evidence": "projects to the recorder",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "e-3",
@@ -98,7 +101,8 @@
    "page": "",
    "evidence": "inhibition is stated, the drawn target is inferred",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "annotation-0",
@@ -110,7 +114,8 @@
    "page": "",
    "evidence": "disclaimer added by the author, not taken from the material",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": "no"
   },
   {
    "element_id": "chart",
@@ -122,7 +127,8 @@
    "page": "",
    "evidence": "10 rows, x=time_s",
    "version": "1",
-   "editable": "yes (regenerated from data)"
+   "editable": "yes (regenerated from data)",
+   "confirmed": ""
   },
   {
    "element_id": "series:signal_mV",
@@ -134,7 +140,8 @@
    "page": "",
    "evidence": "column signal_mV, 10 points, 0 missing",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": ""
   },
   {
    "element_id": "series:control_mV",
@@ -146,7 +153,8 @@
    "page": "",
    "evidence": "column control_mV, 10 points, 0 missing",
    "version": "1",
-   "editable": "yes"
+   "editable": "yes",
+   "confirmed": ""
   }
  ],
  "export_check": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\export_check.json",
