@@ -1,4 +1,4 @@
-﻿#!/usr/bin/env python3
+#!/usr/bin/env python3
 """Build the self-made benchmark cases for this skill.
 
     python build_cases.py > cases.json
@@ -20,12 +20,16 @@ def node(i, shape, x, y, w, h, text, kind="stated", **kw):
     return n
 
 
-def scene(nodes, edges=(), width=1200, height=800):
-    return {"canvas": {"width": width, "height": height, "background": "#ffffff", "dpi": 300},
-            "meta": {"title": "benchmark scene", "description": "", "case_id": "BENCH"},
-            "layers": [{"id": "connectors", "z": 1}, {"id": "shapes", "z": 2},
-                       {"id": "labels", "z": 3}],
-            "nodes": list(nodes), "edges": list(edges), "legend": [], "annotations": []}
+def scene(nodes, edges=(), width=1200, height=800, panels=(), constraints=None):
+    s = {"canvas": {"width": width, "height": height, "background": "#ffffff", "dpi": 300},
+         "meta": {"title": "benchmark scene", "description": "", "case_id": "BENCH"},
+         "layers": [{"id": "connectors", "z": 1}, {"id": "shapes", "z": 2},
+                    {"id": "labels", "z": 3}],
+         "nodes": list(nodes), "edges": list(edges), "legend": [], "annotations": [],
+         "panels": list(panels)}
+    if constraints:
+        s["constraints"] = constraints
+    return s
 
 
 def edge(i, a, b, label=None, style="solid"):
@@ -68,6 +72,17 @@ CASES = [
                           "text": "no provenance"}],
                "edges": [], "legend": [], "annotations": []},
      "min_text": 0},
+    {"id": "panelled-overview", "expect": "success", "min_text": 3,
+     "scene": scene([node(1, "roundrect", 90, 300, 200, 100, "sensor"),
+                     node(2, "rect", 420, 300, 220, 100, "amplifier"),
+                     node(3, "ellipse", 720, 285, 220, 130, "recorder")],
+                    [edge(1, "n1", "n2"), edge(2, "n2", "n3")],
+                    panels=[{"label": "A", "x": 50, "y": 260, "w": 300, "h": 190},
+                            {"label": "B", "x": 380, "y": 260, "w": 620, "h": 190}],
+                    constraints={"min_font_size": 12, "max_colors": 10})},
+    {"id": "font-too-small", "expect": "invalid", "expect_error": "below the declared minimum",
+     "scene": scene([node(1, "rect", 80, 80, 200, 100, "tiny", font_size=8)],
+                    constraints={"min_font_size": 14})},
     {"id": "three-series-chart", "expect": "chart",
      "chart": {"x": "t",
                "series": [{"y": "a", "label": "A"}, {"y": "b", "label": "B"},
