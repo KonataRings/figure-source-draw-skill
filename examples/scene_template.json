@@ -1,0 +1,85 @@
+﻿{
+ "canvas": {
+  "width": 1200,
+  "height": 700,
+  "background": "#ffffff",
+  "dpi": 300
+ },
+ "meta": {
+  "title": "example scene",
+  "description": "",
+  "case_id": ""
+ },
+ "layers": [
+  {
+   "id": "frame",
+   "z": 0,
+   "note": "axes, panel borders, scale bars"
+  },
+  {
+   "id": "connectors",
+   "z": 1,
+   "note": "arrows and edges"
+  },
+  {
+   "id": "shapes",
+   "z": 2,
+   "note": "entities"
+  },
+  {
+   "id": "labels",
+   "z": 3,
+   "note": "text and legend"
+  }
+ ],
+ "nodes": [
+  {
+   "id": "a",
+   "layer": "shapes",
+   "shape": "roundrect",
+   "x": 80,
+   "y": 120,
+   "w": 220,
+   "h": 90,
+   "text": "stimulus",
+   "fill": "#dbe7f5",
+   "stroke": "#2b4a6f",
+   "source": {
+    "kind": "stated",
+    "artifact": "source.xml",
+    "quote": "stimulus"
+   }
+  },
+  {
+   "id": "b",
+   "layer": "shapes",
+   "shape": "rect",
+   "x": 420,
+   "y": 120,
+   "w": 220,
+   "h": 90,
+   "text": "response",
+   "fill": "#f5e6db",
+   "stroke": "#6f4a2b",
+   "source": {
+    "kind": "inferred",
+    "note": "relation stated in one sentence"
+   }
+  }
+ ],
+ "edges": [
+  {
+   "id": "ab",
+   "from": "a",
+   "to": "b",
+   "label": "drives",
+   "source": {
+    "kind": "stated",
+    "artifact": "source.xml",
+    "quote": "drives"
+   }
+  }
+ ],
+ "legend": [],
+ "annotations": []
+}
