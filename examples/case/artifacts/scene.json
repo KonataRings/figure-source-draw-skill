@@ -1,0 +1,45 @@
+{
+ "canvas": {"width": 1400, "height": 820, "background": "#ffffff", "dpi": 300},
+ "meta": {
+  "title": "Synthetic overview: stimulus reaches the recorder through one relay",
+  "description": "Example scene used to show the interface; not a result for any official case.",
+  "case_id": "EXAMPLE-FIG"
+ },
+ "layers": [
+  {"id": "frame", "z": 0},
+  {"id": "connectors", "z": 1},
+  {"id": "shapes", "z": 2},
+  {"id": "labels", "z": 3}
+ ],
+ "nodes": [
+  {"id": "n-stim", "layer": "shapes", "shape": "roundrect", "x": 70, "y": 300, "w": 240, "h": 110,
+   "text": "stimulus", "fill": "#dbe7f5", "stroke": "#2b4a6f", "font_size": 20,
+   "source": {"kind": "stated", "artifact": "notes.txt", "quote": "a brief stimulus is applied"}},
+  {"id": "n-relay", "layer": "shapes", "shape": "rect", "x": 380, "y": 300, "w": 240, "h": 110,
+   "text": "relay nucleus", "fill": "#e8f2e0", "stroke": "#3f6b34", "font_size": 20,
+   "source": {"kind": "stated", "artifact": "notes.txt", "quote": "the relay nucleus receives it"}},
+  {"id": "n-rec", "layer": "shapes", "shape": "ellipse", "x": 700, "y": 285, "w": 260, "h": 140,
+   "text": "recorder", "fill": "#f5e6db", "stroke": "#6f4a2b", "font_size": 20,
+   "source": {"kind": "stated", "artifact": "notes.txt", "quote": "responses were recorded downstream"}},
+  {"id": "n-ctrl", "layer": "shapes", "shape": "diamond", "x": 400, "y": 540, "w": 200, "h": 120,
+   "text": "control arm", "fill": "#f0f0f0", "stroke": "#555555", "font_size": 18,
+   "source": {"kind": "inferred", "note": "the text mentions a control but not its position in the pathway"}}
+ ],
+ "edges": [
+  {"id": "e-1", "from": "n-stim", "to": "n-relay", "label": "excites", "arrow": "end",
+   "source": {"kind": "stated", "artifact": "notes.txt", "quote": "excites the relay"}},
+  {"id": "e-2", "from": "n-relay", "to": "n-rec", "label": "projects to", "arrow": "end",
+   "source": {"kind": "stated", "artifact": "notes.txt", "quote": "projects to the recorder"}},
+  {"id": "e-3", "from": "n-ctrl", "to": "n-relay", "label": "inhibits", "style": "dashed",
+   "arrow": "end",
+   "source": {"kind": "inferred", "note": "inhibition is stated, the drawn target is inferred"}}
+ ],
+ "legend": [
+  {"label": "stated in the text", "color": "#dbe7f5"},
+  {"label": "inferred, needs confirmation", "color": "#f0f0f0"}
+ ],
+ "annotations": [
+  {"x": 70, "y": 70, "text": "A synthetic example, not an official case result", "font_size": 18,
+   "source": {"kind": "inferred", "note": "disclaimer added by the author, not taken from the material"}}
+ ]
+}
