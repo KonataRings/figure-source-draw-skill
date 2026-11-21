@@ -24,7 +24,8 @@ def rows_from_scene(scene, version):
             "source_kind": src.get("kind", ""),
             "artifact": src.get("artifact", ""), "page": src.get("page", ""),
             "evidence": src.get("quote") or src.get("note") or "",
-            "version": version, "editable": "yes"})
+            "version": version, "editable": "yes",
+            "confirmed": "yes" if src.get("confirmed") else "no"})
     for e in scene.get("edges") or []:
         src = e.get("source") or {}
         rows.append({
@@ -35,7 +36,8 @@ def rows_from_scene(scene, version):
             "source_kind": src.get("kind", ""),
             "artifact": src.get("artifact", ""), "page": src.get("page", ""),
             "evidence": src.get("quote") or src.get("note") or "",
-            "version": version, "editable": "yes"})
+            "version": version, "editable": "yes",
+            "confirmed": "yes" if src.get("confirmed") else "no"})
     for i, an in enumerate(scene.get("annotations") or []):
         src = an.get("source") or {}
         rows.append({
@@ -44,7 +46,8 @@ def rows_from_scene(scene, version):
             "source_kind": src.get("kind", ""),
             "artifact": src.get("artifact", ""), "page": src.get("page", ""),
             "evidence": src.get("quote") or src.get("note") or "",
-            "version": version, "editable": "yes"})
+            "version": version, "editable": "yes",
+            "confirmed": "yes" if src.get("confirmed") else "no"})
     return rows
 
 
@@ -85,7 +88,7 @@ def main():
         raise SystemExit("nothing to record: pass --scene and/or --chart-mapping")
 
     fields = ["element_id", "kind", "label", "shape", "source_kind", "artifact",
-              "page", "evidence", "version", "editable"]
+              "page", "evidence", "version", "editable", "confirmed"]
     os.makedirs(os.path.dirname(os.path.abspath(a.output)), exist_ok=True)
     with open(a.output, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=fields)
@@ -101,3 +104,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
