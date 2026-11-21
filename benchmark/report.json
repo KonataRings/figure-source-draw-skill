@@ -1,0 +1,55 @@
+{
+ "passed": 6,
+ "total": 6,
+ "cases": [
+  {
+   "id": "shapes-four",
+   "expect": "success",
+   "ok": true,
+   "why": "exports checked, 7 labels, 7 ledger rows",
+   "status": "success",
+   "texts": 7,
+   "ledger_rows": 7
+  },
+  {
+   "id": "long-label-wrap",
+   "expect": "success",
+   "ok": true,
+   "why": "exports checked, 4 labels, 3 ledger rows",
+   "status": "success",
+   "texts": 4,
+   "ledger_rows": 3
+  },
+  {
+   "id": "cjk-label",
+   "expect": "success",
+   "ok": true,
+   "why": "exports checked, 3 labels, 3 ledger rows",
+   "status": "success",
+   "texts": 3,
+   "ledger_rows": 3
+  },
+  {
+   "id": "off-canvas",
+   "expect": "warning",
+   "ok": true,
+   "why": "warned and still exported",
+   "status": "success",
+   "texts": 2,
+   "ledger_rows": 3
+  },
+  {
+   "id": "missing-source",
+   "expect": "invalid",
+   "ok": true,
+   "why": "validation rejected the scene"
+  },
+  {
+   "id": "three-series-chart",
+   "expect": "chart",
+   "ok": true,
+   "why": "chart rendered",
+   "status": "partial"
+  }
+ ]
+}
