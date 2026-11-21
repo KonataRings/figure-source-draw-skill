@@ -1,12 +1,12 @@
-element_id,kind,label,shape,source_kind,artifact,page,evidence,version,editable
-n-stim,node,stimulus,roundrect,stated,notes.txt,,a brief stimulus is applied,1,yes
-n-relay,node,relay nucleus,rect,stated,notes.txt,,the relay nucleus receives it,1,yes
-n-rec,node,recorder,ellipse,stated,notes.txt,,responses were recorded downstream,1,yes
-n-ctrl,node,control arm,diamond,inferred,,,the text mentions a control but not its position in the pathway,1,yes
-e-1,edge,n-stim -> n-relay (excites),solid,stated,notes.txt,,excites the relay,1,yes
-e-2,edge,n-relay -> n-rec (projects to),solid,stated,notes.txt,,projects to the recorder,1,yes
-e-3,edge,n-ctrl -> n-relay (inhibits),dashed,inferred,,,"inhibition is stated, the drawn target is inferred",1,yes
-annotation-0,annotation,"A synthetic example, not an official case result",text,inferred,,,"disclaimer added by the author, not taken from the material",1,yes
-chart,chart,line,axes,stated,data.csv,,"10 rows, x=time_s",1,yes (regenerated from data)
-series:signal_mV,series,recorded signal,series,stated,data.csv,,"column signal_mV, 10 points, 0 missing",1,yes
-series:control_mV,series,control arm,series,stated,data.csv,,"column control_mV, 10 points, 0 missing",1,yes
+element_id,kind,label,shape,source_kind,artifact,page,evidence,version,editable,confirmed
+n-stim,node,stimulus,roundrect,stated,notes.txt,,a brief stimulus is applied,1,yes,no
+n-relay,node,relay nucleus,rect,stated,notes.txt,,the relay nucleus receives it,1,yes,no
+n-rec,node,recorder,ellipse,stated,notes.txt,,responses were recorded downstream,1,yes,no
+n-ctrl,node,control arm,diamond,inferred,,,the text mentions a control but not its position in the pathway,1,yes,no
+e-1,edge,n-stim -> n-relay (excites),solid,stated,notes.txt,,excites the relay,1,yes,no
+e-2,edge,n-relay -> n-rec (projects to),solid,stated,notes.txt,,projects to the recorder,1,yes,no
+e-3,edge,n-ctrl -> n-relay (inhibits),dashed,inferred,,,"inhibition is stated, the drawn target is inferred",1,yes,no
+annotation-0,annotation,"A synthetic example, not an official case result",text,inferred,,,"disclaimer added by the author, not taken from the material",1,yes,no
+chart,chart,line,axes,stated,data.csv,,"10 rows, x=time_s",1,yes (regenerated from data),
+series:signal_mV,series,recorded signal,series,stated,data.csv,,"column signal_mV, 10 points, 0 missing",1,yes,
+series:control_mV,series,control arm,series,stated,data.csv,,"column control_mV, 10 points, 0 missing",1,yes,
