@@ -1,0 +1,15 @@
+{
+ "case_id": "EXAMPLE-FIG",
+ "workorder": "scientific_overview",
+ "output_contract": {
+  "required": ["editable_source", "exports", "provenance", "element_map", "status"],
+  "properties": {
+   "editable_source": {"type": "string"},
+   "exports": {"type": "object"},
+   "provenance": {"type": "string"},
+   "element_map": {"type": "array"},
+   "status": {"type": "string"}
+  }
+ },
+ "notes": "synthetic example: overview schematic plus one data chart"
+}
