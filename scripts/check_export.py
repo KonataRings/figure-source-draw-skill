@@ -15,9 +15,9 @@ import os
 import sys
 
 
-def check_svg(path):
+def check_svg(path, max_colors=12):
     from lxml import etree
-    res = {"file": path, "ok": True, "problems": [], "facts": {}}
+    res = {"file": path, "ok": True, "problems": [], "warnings": [], "facts": {}}
     if not os.path.exists(path) or os.path.getsize(path) == 0:
         res["ok"] = False
         res["problems"].append("missing or empty")
@@ -53,13 +53,25 @@ def check_svg(path):
                     continue
                 if x < -1 or y < -1 or x + w > vw + 1 or y + h > vh + 1:
                     res["problems"].append("element %s falls outside the viewBox" % (el.get("id") or tag))
+    families = sorted({el.get("font-family") for el in root.iter()
+                       if isinstance(el.tag, str) and el.get("font-family")})
+    colours = sorted({(el.get("fill") or "").lower() for el in root.iter()
+                      if isinstance(el.tag, str) and el.get("fill")}
+                     | {(el.get("stroke") or "").lower() for el in root.iter()
+                        if isinstance(el.tag, str) and el.get("stroke")})
+    colours = [c for c in colours if c not in ("none", "")]
+    res["facts"]["font_families"] = families or ["inherited (no explicit font-family)"]
+    res["facts"]["colors"] = len(colours)
+    if len(colours) > max_colors:
+        res["warnings"].append("%d distinct colours; a journal figure usually stays under %d"
+                               % (len(colours), max_colors))
     return res
 
 
 def check_png(path):
     from PIL import Image
     import numpy as np
-    res = {"file": path, "ok": True, "problems": [], "facts": {}}
+    res = {"file": path, "ok": True, "problems": [], "warnings": [], "facts": {}}
     if not os.path.exists(path) or os.path.getsize(path) == 0:
         res["ok"] = False
         res["problems"].append("missing or empty")
@@ -79,7 +91,7 @@ def check_png(path):
 
 
 def check_pdf(path):
-    res = {"file": path, "ok": True, "problems": [], "facts": {}}
+    res = {"file": path, "ok": True, "problems": [], "warnings": [], "facts": {}}
     if not os.path.exists(path) or os.path.getsize(path) == 0:
         res["ok"] = False
         res["problems"].append("missing or empty")
@@ -101,6 +113,13 @@ def check_pdf(path):
         res["facts"]["text_chars"] = len(text)
         if len(text) < 5:
             res["problems"].append("PDF page has almost no extractable text")
+        try:
+            fonts = doc[0].get_fonts()
+            res["facts"]["fonts"] = sorted({f[3] for f in fonts if len(f) > 3})
+            res["facts"]["fonts_embedded"] = all(
+                (f[1] not in ("n/a", None)) for f in fonts) if fonts else None
+        except Exception:
+            pass
     doc.close()
     return res
 
@@ -114,7 +133,7 @@ def main():
     ap.add_argument("--output", default="export_check.json")
     a = ap.parse_args()
 
-    report = {"checks": [], "ok": True, "problems": []}
+    report = {"checks": [], "ok": True, "problems": [], "warnings": []}
     for path, fn in ((a.svg, check_svg), (a.png, check_png), (a.pdf, check_pdf)):
         if not path:
             continue
@@ -123,6 +142,8 @@ def main():
         if not r["ok"]:
             report["ok"] = False
         report["problems"].extend("%s: %s" % (os.path.basename(path), p) for p in r["problems"])
+        report["warnings"].extend("%s: %s" % (os.path.basename(path), w)
+                                  for w in r.get("warnings") or [])
 
     text_total = sum(c["facts"].get("text_elements", 0) for c in report["checks"])
     report["text_elements"] = text_total
