@@ -58,6 +58,23 @@ def validate(scene):
         errors.append("canvas: width and height must be positive numbers")
         w = h = 0
 
+    constraints = scene.get("constraints") or {}
+    min_font = constraints.get("min_font_size")
+    max_colors = constraints.get("max_colors")
+
+    for i, panel in enumerate(scene.get("panels") or []):
+        label = panel.get("label") or "#%d" % i
+        for k in ("x", "y", "w", "h"):
+            if not isinstance(panel.get(k), (int, float)):
+                errors.append("panel %s: %s must be a number" % (label, k))
+                break
+        else:
+            if w and (panel["x"] < 0 or panel["y"] < 0 or
+                      panel["x"] + panel["w"] > w or panel["y"] + panel["h"] > h):
+                warnings.append("panel %s: extends outside the canvas" % label)
+        if not str(panel.get("label", "")).strip():
+            warnings.append("panel %d: no label; panels are usually lettered A, B, C" % i)
+
     layer_ids = {l.get("id") for l in scene.get("layers") or []}
     if not layer_ids:
         errors.append("layers: at least one layer is required")
@@ -85,6 +102,9 @@ def validate(scene):
                 warnings.append("node %s: extends outside the canvas" % nid)
         if not str(n.get("text", "")).strip():
             warnings.append("node %s: no text; an unlabelled entity is hard to check" % nid)
+        if min_font and isinstance(n.get("font_size", 16), (int, float)) and n.get("font_size", 16) < min_font:
+            errors.append("node %s: font_size %s is below the declared minimum %s"
+                          % (nid, n.get("font_size"), min_font))
         _check_source(n, errors, "node %s" % nid)
 
     for e in scene.get("edges") or []:
@@ -108,10 +128,17 @@ def validate(scene):
     if not (scene.get("meta") or {}).get("title"):
         warnings.append("meta.title is empty; exports will have no caption")
 
+    colors = {n.get("fill", "#ffffff").lower() for n in scene.get("nodes") or []}
+    colors |= {n.get("stroke", "#222222").lower() for n in scene.get("nodes") or []}
+    if max_colors and len(colors) > max_colors:
+        warnings.append("the scene uses %d colours, above the declared maximum %d"
+                        % (len(colors), max_colors))
+
     return {"ok": not errors, "errors": errors, "warnings": warnings,
             "counts": {"nodes": len(scene.get("nodes") or []),
                        "edges": len(scene.get("edges") or []),
                        "annotations": len(scene.get("annotations") or []),
+                       "panels": len(scene.get("panels") or []),
                        "layers": len(layer_ids)}}
 
 
