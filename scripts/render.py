@@ -126,6 +126,8 @@ def render_svg(scene, path):
             out.extend(_svg_legend(scene))
             out.extend(_svg_annotations(scene))
         else:
+            if lid == "frame":
+                out.extend(_svg_panels(scene))
             for n in scene.get("nodes") or []:
                 if n.get("layer") == lid:
                     out.extend(_svg_node(n, font))
@@ -211,6 +213,24 @@ def _svg_edge(scene, e):
                    'text-anchor="middle">%s</text>' % (
                        _esc(e.get("id", "e")), mx, my, e.get("font_size", 14), _esc(e["label"])))
     out.append("</g>")
+    return out
+
+
+def _svg_panels(scene):
+    """Panel frames with a letter in the corner, the way journal figures are labelled."""
+    out = []
+    for i, panel in enumerate(scene.get("panels") or []):
+        x, y, w, h = panel["x"], panel["y"], panel["w"], panel["h"]
+        out.append('<rect id="panel-%s" x="%g" y="%g" width="%g" height="%g" fill="none" '
+                   'stroke="%s" stroke-width="%s" stroke-dasharray="6,4"/>' % (
+                       _esc(panel.get("label") or i), x, y, w, h,
+                       panel.get("stroke", "#9aa5b1"), panel.get("stroke_width", 1.2)))
+        if panel.get("label"):
+            out.append('<text id="panel-label-%s" x="%g" y="%g" font-size="%s" '
+                       'font-weight="bold" fill="%s">%s</text>' % (
+                           _esc(panel["label"]), x + 8, y + 26,
+                           panel.get("font_size", 24), panel.get("label_color", "#1b1b1b"),
+                           _esc(panel["label"])))
     return out
 
 
@@ -308,6 +328,17 @@ def render_pdf(scene, path):
             mx, my = (x1 + x2) / 2, (y1 + y2) / 2 - 8
             draw_text(mx, my, e["label"], e.get("font_size", 14), "#222222", "center")
 
+    for panel in scene.get("panels") or []:
+        pdf.setStrokeColor(HexColor(panel.get("stroke", "#9aa5b1")))
+        pdf.setLineWidth(panel.get("stroke_width", 1.2))
+        pdf.setDash(6, 4)
+        pdf.rect(panel["x"], H - panel["y"] - panel["h"], panel["w"], panel["h"],
+                 stroke=1, fill=0)
+        pdf.setDash()
+        if panel.get("label"):
+            draw_text(panel["x"] + 8, panel["y"] + 26, panel["label"],
+                      panel.get("font_size", 24), panel.get("label_color", "#1b1b1b"))
+
     for n in scene.get("nodes") or []:
         x, y, w, h = n["x"], n["y"], n["w"], n["h"]
         pdf.setFillColor(HexColor(n.get("fill", "#ffffff")))
@@ -387,6 +418,15 @@ def render_png(scene, path, scale=2):
         if e.get("label"):
             mx, my = (x1 + x2) / 2, (y1 + y2) / 2 - 8
             text(mx, my, e["label"], e.get("font_size", 14), "#222222", "mm")
+
+    for panel in scene.get("panels") or []:
+        d.rectangle([panel["x"] * scale, panel["y"] * scale,
+                     (panel["x"] + panel["w"]) * scale, (panel["y"] + panel["h"]) * scale],
+                    outline=panel.get("stroke", "#9aa5b1"),
+                    width=max(1, int(panel.get("stroke_width", 1.2) * scale)))
+        if panel.get("label"):
+            text(panel["x"] + 8, panel["y"] + 26, panel["label"],
+                 panel.get("font_size", 24), panel.get("label_color", "#1b1b1b"), "lm")
 
     for n in scene.get("nodes") or []:
         box = [n["x"] * scale, n["y"] * scale, (n["x"] + n["w"]) * scale, (n["y"] + n["h"]) * scale]
