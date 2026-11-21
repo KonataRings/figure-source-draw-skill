@@ -11,6 +11,11 @@
   {"id": "shapes", "z": 2},
   {"id": "labels", "z": 3}
  ],
+ "constraints": {"min_font_size": 14, "max_colors": 10},
+ "panels": [
+  {"label": "A", "x": 40, "y": 250, "w": 300, "h": 220},
+  {"label": "B", "x": 360, "y": 250, "w": 620, "h": 220}
+ ],
  "nodes": [
   {"id": "n-stim", "layer": "shapes", "shape": "roundrect", "x": 70, "y": 300, "w": 240, "h": 110,
    "text": "stimulus", "fill": "#dbe7f5", "stroke": "#2b4a6f", "font_size": 20,
