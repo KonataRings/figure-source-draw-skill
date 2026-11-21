@@ -57,7 +57,8 @@ def check_case(case, cdir, workdir):
     if case["expect"] == "invalid":
         v = run([os.path.join(SCRIPTS, "scene.py"), "--validate",
                  os.path.join(cdir, "artifacts", "scene.json")])
-        detail["ok"] = v.returncode == 1 and "missing source" in v.stdout
+        expect_err = case.get("expect_error", "missing source")
+        detail["ok"] = v.returncode == 1 and expect_err in v.stdout
         detail["why"] = "validation rejected the scene" if detail["ok"] else "validation accepted it"
         return detail
 
@@ -146,3 +147,4 @@ def main():
 
 if __name__ == "__main__":
     sys.exit(main())
+
