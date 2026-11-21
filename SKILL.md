@@ -30,9 +30,9 @@ description: 依据材料生成或编辑科研图稿，同时交付可编辑源�
 ## 处理流程
 
 1. **清点材料。** 列出 `artifacts` 下每个文件的类型与大小，判断有哪些能作为图面依据；PDF/XML 先抽出正文与图表说明，数据表先看列名与量纲。
-2. **确定路线并建场景。** 示意图路线写 `scene.json`：`nodes` 记实体，`edges` 记关系，`legend` 记图例，`layers` 决定叠放顺序；每个元素必须带 `source`，取自原文的写 `{"kind":"stated","artifact":...,"quote":...}`，由推断得到的写 `{"kind":"inferred","note":"为什么推断"}`。图表路线写 `chart_spec.json`，只写列名与样式，不写数值。
+2. **确定路线并建场景。** 示意图路线写 `scene.json`：`nodes` 记实体，`edges` 记关系，`legend` 记图例，`panels` 记分幅边框与 A/B 字母，`constraints` 记硬约束（`min_font_size`、`max_colors`），`layers` 决定叠放顺序；每个元素必须带 `source`，取自原文的写 `{"kind":"stated","artifact":...,"quote":...}`，由推断得到的写 `{"kind":"inferred","note":"为什么推断"}`，经人工核对过的加 `"confirmed": true`。图表路线写 `chart_spec.json`，只写列名与样式，不写数值。
 3. **校验与出图。** `scene.py --validate` 先查 id 唯一性、边是否指向存在的节点、元素是否越界、来源是否缺失；通过后 `render.py` 一次产出 SVG、PDF、PNG 三份同坐标的文件。
-4. **导出自检。** `check_export.py` 检查三件事：SVG 里文字仍是 `<text>`（不是路径，否则不可编辑）、没有元素落到画布外、PNG 不是空白、PDF 能打开且尺寸正确。
+4. **导出自检。** `check_export.py` 检查四件事：SVG 里文字仍是 `<text>`（不是路径，否则不可编辑）、没有元素落到画布外、PNG 不是空白且尺寸合理、PDF 能打开且文字可抽取；同时报出所用字体、颜色数量与 PDF 内嵌字体，颜色超过声明上限会给出警告。
 5. **建台账并装配结果。** `ledger.py` 为每个元素写一行来源；`run_case.py` 汇总 `result.json`，未填字段标 `insufficient_evidence` 并降级为 `partial`。
 
 一条命令即可完成 2—5 步：
@@ -45,7 +45,7 @@ python scripts/run_case.py --input /input --work /app/work --output /app/output
 
 **示意图。** 场景模型只有五种形状（矩形、圆角矩形、椭圆、菱形、六边形）与三类连线（实线、虚线、点线），这是刻意的限制：结构图的可核验性来自"实体—关系—来源"三元组，而不是形状数量。文字自动换行并按节点居中，SVG 中每个节点是 `id="node-*"` 的组，改文字不会破坏布局。
 
-**图表。** 数据只来自 `artifacts` 里的表，`chart_spec.json` 指定哪一列作 x、哪些列作 y、风格（line/scatter/bar/barh/errorbar）。若某列全是非数值，脚本报错退出而不是画一张空图。`chart_mapping.json` 记录列名、点数与缺失值数量，台账据此写"这一条曲线来自哪一列"。
+**图表。** 数据只来自 `artifacts` 里的表，`chart_spec.json` 指定哪一列作 x、哪些列作 y、风格（line/scatter/bar/barh/errorbar）。若某列全是非数值，脚本报错退出而不是画一张空图。`chart_mapping.json` 记录列名、点数与缺失值数量，台账据此写"这一条曲线来自哪一列"。图表编辑的语义是"改规格再重画"：改 `chart_spec.json`（换列、换风格、换坐标范围）后重跑，得到新图与新映射，而不是在位图上涂改。
 
 **编辑。** `edit_svg.py` 只改被点名的元素（`set-text`、`move`、`recolor`、`delete`），其余部分保持不变，并把每个操作的前后值写进 `edit_log.json`。找不到的元素或无法移动的标签会被拒绝并记录，而不是静默跳过。
 
@@ -60,6 +60,8 @@ python scripts/run_case.py --input /input --work /app/work --output /app/output
 | 数据列不存在或非数值 | `chart.py` 退出并指出列名 | 回到数据表核对该列，不猜测替代列 |
 | 编辑目标不存在 | `edit_svg.py` 记 `missing` 并返回非零 | 先列出现有 id 再改，不新建同名元素 |
 | 字体缺中文 | 导出后文字显示为方框 | 报告缺字体并按无衬线回退；SVG 中文字仍为可编辑文本 |
+| 字号低于声明下限 | 校验报 `below the declared minimum` | 放大字号或调整约束，不为过关而改约束 |
+| 颜色超出声明上限 | 校验与导出检查给出警告 | 合并语义相同的颜色，保留区分所需的对比 |
 | 导出空白或过小 | `check_export.py` 报 `blank` | 视为失败，检查场景坐标与格式参数 |
 
 ## 运行状态口径
