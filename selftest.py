@@ -23,6 +23,15 @@ def run(args, expect=0):
 def main():
     shutil.rmtree(TMP, ignore_errors=True)
     os.makedirs(TMP)
+    try:
+        _run_checks()
+    finally:
+        # a test that leaves its scratch dir inside the package would inflate the
+        # file count and leak local paths into anything shipped from here
+        shutil.rmtree(TMP, ignore_errors=True)
+
+
+def _run_checks():
     case = os.path.join(HERE, "examples", "case")
     work = os.path.join(TMP, "work")
     out = os.path.join(TMP, "out")
