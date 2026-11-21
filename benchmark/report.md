@@ -11,6 +11,8 @@
 | cjk-label | success | ✓ | 3 | 3 | exports checked, 3 labels, 3 ledger rows |
 | off-canvas | warning | ✓ | 2 | 3 | warned and still exported |
 | missing-source | invalid | ✓ | - | - | validation rejected the scene |
+| panelled-overview | success | ✓ | 3 | 5 | exports checked, 3 labels, 5 ledger rows |
+| font-too-small | invalid | ✓ | - | - | validation rejected the scene |
 | three-series-chart | chart | ✓ | - | - | chart rendered |
 
-通过 **6/6**。
+通过 **8/8**。
