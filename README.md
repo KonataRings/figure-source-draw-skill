@@ -1,4 +1,4 @@
-# 科研绘图 Skill：figure-source-draw
+﻿# 科研绘图 Skill：figure-source-draw
 
 依据材料生成或修改科研图稿，交付**可分层的可编辑源文件**、PDF/PNG 导出件，以及**逐元素来源台账**。三条路线：示意图/机制图、数据图表、既有 SVG 的保源编辑。
 
@@ -74,4 +74,6 @@ python benchmark/run_benchmark.py     # 6 个合成场景，输出 report.md
 
 ## 版本
 
+- 1.1.0：新增分幅面板（panels，A/B 字母与边框）、硬约束（min_font_size / max_colors 校验）、导出检查补充字体与颜色统计、台账增加人工确认列；基准扩到 8 例。
 - 1.0.0：场景模型 + 三后端渲染 + 图表路线 + 保源编辑 + 导出检查 + 台账 + 一条命令驱动；自检与 6 例基准。
+
