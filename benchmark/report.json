@@ -1,6 +1,6 @@
 {
- "passed": 6,
- "total": 6,
+ "passed": 8,
+ "total": 8,
  "cases": [
   {
    "id": "shapes-four",
@@ -40,6 +40,21 @@
   },
   {
    "id": "missing-source",
+   "expect": "invalid",
+   "ok": true,
+   "why": "validation rejected the scene"
+  },
+  {
+   "id": "panelled-overview",
+   "expect": "success",
+   "ok": true,
+   "why": "exports checked, 3 labels, 5 ledger rows",
+   "status": "success",
+   "texts": 3,
+   "ledger_rows": 5
+  },
+  {
+   "id": "font-too-small",
    "expect": "invalid",
    "ok": true,
    "why": "validation rejected the scene"
