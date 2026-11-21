@@ -1,0 +1,56 @@
+{
+ "checks": [
+  {
+   "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.svg",
+   "ok": true,
+   "problems": [],
+   "facts": {
+    "viewBox": "0 0 1400 820",
+    "width": "1400",
+    "height": "820",
+    "text_elements": 10,
+    "groups": 12,
+    "layer_ids": [
+     "layer-frame",
+     "layer-connectors",
+     "layer-shapes",
+     "layer-labels"
+    ]
+   }
+  },
+  {
+   "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.png",
+   "ok": true,
+   "problems": [],
+   "facts": {
+    "size": [
+     2800,
+     1640
+    ],
+    "mode": "RGB",
+    "dpi": [
+     299.9994,
+     299.9994
+    ],
+    "stddev": 18.55,
+    "unique_levels": 239
+   }
+  },
+  {
+   "file": "C:\\Users\\Lenovo\\.bohrium\\desktop\\prod\\sessions\\7fdc39ea-0f32-4b7a-bda1-10fa6ec90b19\\bohrium\\tasks\\p3-figure-draw\\submission\\examples\\expected_output\\figure.pdf",
+   "ok": true,
+   "problems": [],
+   "facts": {
+    "pages": 1,
+    "page_size": [
+     1400.0,
+     820.0
+    ],
+    "text_chars": 169
+   }
+  }
+ ],
+ "ok": true,
+ "problems": [],
+ "text_elements": 10
+}
