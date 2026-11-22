@@ -90,6 +90,8 @@ python scripts/run_case.py --input /input --work /app/work --output /app/output
 
 脚本失败时不要反复重试同一命令：先读 `work/run_report.json` 里的 `rc` 与 `stderr`，区分"参数错"（可修）与"材料缺"（应报状态）。已生成的 SVG 保留，后续可只重跑 `render.py` 与 `check_export.py`。
 
+本包只含文本资源：平台把 PNG/PDF 判为不支持的文件类型，混入会让整次提交在预检被拒。因此导出件一律在运行时生成，示例目录只保留 SVG、CSV 与 JSON。
+
 ## 质量闸门
 
 交付前逐条确认：
