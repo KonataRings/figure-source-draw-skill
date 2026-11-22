@@ -10,7 +10,14 @@
 | `case/artifacts/chart_spec.json` | 图表规格：只写列名与样式 |
 | `expected_output/` | 由上面的输入实际跑出的结果，`result.json` 内已标 `"example": true` |
 
-复现：
+**只发文本资源。** 平台把 PNG/PDF 之类判为不支持的文件类型，会让整次提交在预检被拒；为避免扩展名白名单的差异，本包连示例 SVG 也不附带，只保留 JSON 与 CSV。三类产物都在运行时生成：
+
+```bash
+python scripts/render.py --scene examples/case/artifacts/scene.json \
+    --outdir examples/expected_output --basename figure --formats svg,pdf,png
+```
+
+复现全流程：
 
 ```bash
 python scripts/run_case.py --input examples/case --work /tmp/work --output /tmp/out
